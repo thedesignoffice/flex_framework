@@ -1,0 +1,445 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+	  <title>The Design Office: Flex Framework</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="title" content="The Design Office">
+	  <meta name="description" content="Flex framework that we're using">
+		<meta name="author" content="Developed by John Caserta">
+	  <meta name="Copyright" content="Copyright The Design Office 2015. All Rights Reserved.">
+
+		<link rel="stylesheet" href="http://thedesignoffice.org/wp-content/themes/dev/v3_style.css" type="text/css" />
+    <style>
+
+
+    </style>
+    </head>
+    <body>
+
+        <header>
+            <div class="parent">
+                <div class="child">
+                    Child
+                </div>
+                <div class="  child">
+                    Child
+                </div>
+            </div>
+        </header>
+
+        <main>
+
+          <div class="parent ">
+            	<div class="blank  child"></div>
+
+
+							<div class="child flex tumblr bottom gallery setheight staysmall">
+									<div class="cycle-slideshow"
+											data-cycle-fx=fade
+											data-cycle-slides="> ol>li"
+											data-cycle-timeout=500
+											data-cycle-speed=500
+											data-cycle-manual-speed=100
+											data-cycle-pause-on-hover="true"
+											>
+
+									<script type="text/javascript" src="http://dobooks.tumblr.com/js?num=12"></script>
+									<p><a href="http://books.thedesignoffice.org">New on the shelves</a></p>
+									</div>
+							</div>
+
+							  <div class="child setheight instagallery double grow ">
+							    <span class="custom-caption"></span>
+							    <div id="instafeed" class=""
+							        data-cycle-fx=fade
+							        data-cycle-timeout=500
+							        data-cycle-delay=2000
+							        data-cycle-speed=2500
+							        data-cycle-manual-speed=100
+							        data-cycle-caption=".instagallery .custom-caption"
+							        data-cycle-caption-template="{{slideNum}}/{{slideCount}}"
+							        data-cycle-pause-on-hover="true"
+							        >
+							        <!-- <div class="cycle-pager"></div> -->
+							    </div>
+									<p class="staysmall"><a href="https://instagram.com/explore/tags/designofficepvd/">Peer into the Office</a></p>
+
+							  </div>
+
+
+
+								<div class="child blank ">   </div>
+
+							  <div class="child setheight centerleft double ">
+									<div>
+											<!-- Events queries -->
+												<?php
+
+												// Consider whether to get by category
+
+												$posttypename = get_field('nickname');
+												$the_query = new WP_Query( 'post_type=event&posts_per_page=1' );
+
+
+													// The Loop
+													while ( $the_query->have_posts() ) : $the_query->the_post();
+
+														$terms = strip_tags( get_the_term_list($post->ID, 'eventstatus', '', ' ', '') );
+														$termsstrip = strtolower($terms);
+														$urltest = 'redirect_url';
+														$fr = get_field('redirect_url');
+														$urlpass = get_post_meta($post->ID, $urltest, TRUE);
+
+														echo '<a href="';
+														if($urlpass != '') { echo $fr; } else { echo the_permalink(); };
+														echo '" class="black noarrow" title="More">';
+
+//														echo '<img src="', the_field('background_image'), '">';
+														echo '<h2>', the_field('event_type') ,'</h2>';
+														echo '<h4 class="title-face">', the_title(), ': ', the_field('event_subhead'), '</h4></a>';
+
+														echo '<p class=" staysmall para">';
+
+														$key = 'date_of_event';
+														$pr = get_field($key);
+														$themeta = get_post_meta($post->ID, $key, TRUE);
+														if($themeta != '') {
+															$date = date("D, M d, Y", strtotime(get_field('date_of_event')));
+															echo $date;
+															echo ' at ', the_field('event_time');
+														}  else { echo 'Coming soon'; }
+														echo '</p>';
+
+
+
+															if(has_term( 'members-only', 'eventstatus')) {
+																echo '<span class="purple"> (Members only)</span>';
+															}
+
+															echo '<p class="staysmall"><a href="/events">More events</a></p>';
+													endwhile;
+
+													// Reset Post Data
+													wp_reset_postdata();
+
+												?>
+
+
+
+											<!---
+							        <h3>Exhibit / Discussion / Reading</h3>
+							        <img src="http://thedesignoffice.org/wp-content/uploads/2015/05/Ming-3d-letters-hand.jpg" width="60%">
+
+							      <h4>ffabschrifting: Reading and exhibit about the design of language. Hosted by Lucinda Hitchcock</h4>
+							      <p class="red staysmall">Monday, May 11 at 7PM </p>
+
+							      <p class="staysmall"><a href="/events">More events</a></p>
+									-->
+								</div>
+							  </div>
+
+
+							  <div class="child excess setheight right">
+							    <div><a href="http://twitter.com/designofficepvd" class="noarrow pictograms medium  multiply ">t</a></div>
+							      <!--
+							    <h2>Some noteworthy news item</h2>
+							    <h3> Ideally a semi-meaty piece of text, why not? Thinking some text is good.</h3>
+							  <p><a href="/events">More news  →</a></p>
+							-->
+							  </div>
+
+
+
+								<div class="child  ">   </div>
+
+								<div class="child members multiply setheight centerleft staysmall">
+									<div>
+									<!--	<span class="custom-caption"></span> -->
+								    <div class="cycle-slideshow"
+								        data-cycle-fx=fade
+								        data-cycle-timeout=500
+								        data-cycle-speed=500
+								        data-cycle-manual-speed=100
+												data-cycle-caption=".members .custom-caption"
+												data-cycle-caption-template="{{slideNum}}/{{slideCount}}"
+								        data-cycle-pause-on-hover="true"
+								        >
+												<!-- People queries -->
+												<?php
+												$posttypename = get_field('nickname');
+												$the_query = new WP_Query( array ( 'post_type' => 'person', 'order' => 'ASC' ) );
+
+
+													// The Loop
+													while ( $the_query->have_posts() ) : $the_query->the_post();
+
+													$terms = strip_tags( get_the_term_list($post->ID, 'status') );
+													$termsstrip = strtolower(str_replace (" ", "", $terms));
+
+													if (strpos($termsstrip, 'part-timemember') !== false or (strpos($termsstrip, 'full-timemember') !== false)) {
+
+														echo '<img src="', get_field('people_index_pic'), '">';
+													}
+
+												endwhile;
+
+												// Reset Post Data
+												wp_reset_postdata();
+
+											?>
+								      <p><a href="/members">Meet the members</a></p>
+										</div>
+							    </div>
+							  </div>
+
+
+
+							  <div class="child blank shrink">
+							  </div>
+
+								<div class="child shop grow  ">
+							    <div>
+							        <h3><a href="/shop" class="noarrow">Designs you can buy</a></h3>
+							        <div class="cycle-slideshow staysmall"
+							        data-cycle-fx=fade
+							        data-cycle-slides="> div"
+							        data-cycle-timeout=1000
+							        data-cycle-speed=3000
+							        data-cycle-manual-speed=100
+							        data-cycle-pause-on-hover="true"
+							        data-cycle-caption-template="{{slideNum}}/{{slideCount}}"
+							        >
+
+
+											<!-- Project query to get 'shop' category -->
+												<?php
+												$posttypename = get_field('nickname');
+												$the_query = new WP_Query( 'post_type=project' );
+													$counter == 0;
+													// The Loop
+													while ( $the_query->have_posts() ) : $the_query->the_post();
+														$terms = strip_tags( get_the_term_list($post->ID, 'projectype') );
+														$termsstrip = strtolower(str_replace (" ", "", $terms));
+														if (strpos($termsstrip, 'shop') !== false ) {
+															$counter ++;
+															if ($counter <= 6) {
+															echo '<div>';
+															echo '<img src="', get_field('hero_image'), '"><p>';
+															echo get_field('credit_type'), ' ', get_field('chief_author');
+															echo '. <a class="nowrap" href="/shop">See all</a></p></div>';
+															}
+														}
+													endwhile;
+
+													// Reset Post Data
+													wp_reset_postdata();
+												?>
+
+
+
+							      </div>
+							    </div>
+							  </div>
+
+
+								<div class="blank child  setheight ">
+                </div>
+
+								<div class="child center setheight shrink doodad">
+							    <a href="https://instagram.com/explore/tags/204westminster/" class="noarrow excess"><img src="http://thedesignoffice.org/wp-content/themes/dev/lib/img/we.svg" width="120"></a>
+							  </div>
+
+
+								<div class=" child setheight memberwork double centerleft">
+								<div>
+						    <h3>Member work</h3>
+						    <span class="custom-caption"></span>
+							    <div class="cycle-slideshow"
+							        data-cycle-fx=fade
+							        data-cycle-slides="> div"
+							        data-cycle-timeout=3000
+							        data-cycle-speed=2000
+							        data-cycle-manual-speed=100
+							        data-cycle-caption=".memberwork .custom-caption"
+							        data-cycle-caption-template="{{slideNum}}/{{slideCount}}"
+							        data-cycle-pause-on-hover="true"
+							        >
+
+
+											<!-- Memberwork queries -->
+												<?php
+
+													// The Loop
+													while ( $the_query->have_posts() ) : $the_query->the_post();
+														$terms = strip_tags( get_the_term_list($post->ID, 'projectype') );
+														$termsstrip = strtolower(str_replace (" ", "", $terms));
+														if (strpos($termsstrip, 'memberwork') !== false) {
+
+														echo '<div>';
+														echo '<img src="', get_field('hero_image'), '"><p class="staysmall"><em>';
+														echo the_title();
+														if(get_field('one_liner') != '') {
+															echo ': ', the_field('one_liner'), '</em>. ';
+														} else {
+															echo '</em>. ';
+														}
+
+														echo get_field('credit_type'), ' ', get_field('chief_author');
+														echo '</div>';
+													}
+													endwhile;
+
+													// Reset Post Data
+													wp_reset_postdata();
+
+												?>
+
+
+
+							    </div>
+									</div>
+								</div>
+
+								<div class=" child setheight blank centerleft">
+                </div>
+
+								<div class="child setheight center doodad double staysmall">
+							    <div>
+							   <a href="http://srainwater.com/category/blog/page/3/" class="noarrow"><img src="http://srainwater.com/wp-content/uploads/2014/04/sniffle.jpg"><p>Sarah Rainwater</p></a></div>
+							  </div>
+
+
+								<div class=" child  title-face double grow">
+									<div>
+										<h2>Commission the group</h2>
+											<p class="">Individual members and companies take commissions, but the group also assembles to take on projects. <a href="/contact">Contact us with inquiries</a></p>
+									</div>
+								</div>
+
+
+
+								<div class="child  center doodad double staysmall">
+							    <div>
+							   <a href="https://society6.com/product/eclipse-a61_bag#26=197" class="noarrow"><img src="http://thedesignoffice.org/wp-content/themes/dev/lib/img/bowers.png"><p>Michelle Bowers</p></a></div>
+							  </div>
+
+
+								<div class=" child setheight double research centerleft">
+								<div>
+										<h3><a href="/research" class="noarrow">Collaborative research & play</a></h3>
+											<div class="cycle-slideshow"
+											data-cycle-fx=fade
+											data-cycle-slides="> div"
+											data-cycle-delay=1000
+											data-cycle-timeout=1000
+											data-cycle-speed=2000
+											data-cycle-manual-speed=100
+											data-cycle-pause-on-hover="true"
+											>
+
+
+											<!-- Project query to get 'research' category -->
+												<?php
+												$posttypename = get_field('nickname');
+												$the_query = new WP_Query( 'post_type=project' );
+												$counter2 == 0;
+													// The Loop
+													while ( $the_query->have_posts() ) : $the_query->the_post();
+														$terms = strip_tags( get_the_term_list($post->ID, 'projectype') );
+														$termsstrip = strtolower(str_replace (" ", "", $terms));
+															if (strpos($termsstrip, 'research') !== false) {
+																$counter2 ++;
+																if ($counter2 <= 6) {
+																	echo '<div>';
+																	echo '<img src="', get_field('hero_image'), '"><p class="staysmall"><em>';
+																	echo the_title();
+
+																	echo '</em>. <a class="nowrap" href="/research">See all</a>';
+																	echo '</div>';
+																}
+															}
+													endwhile;
+
+													// Reset Post Data
+													wp_reset_postdata();
+												?>
+
+
+
+									</div>
+								</div>
+								</div>
+
+								<div class=" child blank">
+                </div>
+
+
+								<div class="child setheight center doodad double staysmall">
+									<div>
+								 <a href="http://lucindahitchcock.com" class="noarrow"><img src="/wp-content/uploads/2015/08/2013-Hitchcock-final-five-D_O-cards5-e1439663912279.jpg"><p>Lucinda Hitchcock</p></a>
+							 	</div>
+								</div>
+								<div class=" child  blank centerleft">
+								</div>
+
+
+
+							</div><!-- parent -->
+
+							<div class="parent ">
+								<div class=" child  title-face double ">
+									<div>
+										<h2>Find out more</h2>
+											<p class="">We’ve been working in downtown Providence since 2007. <a href="/about">Learn more about our history, mission and how to get involved</a></p>
+									</div>
+								</div>
+
+
+
+            </div><!-- parent -->
+        </main>
+			<?php get_template_part('v3_footer', ''); ?>
+			<!-- this is where we put our custom functions -->
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+			<script src="<?php bloginfo('template_directory'); ?>/lib/js/cycle2.js"></script>
+			<script src="<?php bloginfo('template_directory'); ?>/lib/js/jquery.smooth-scroll.js"></script>
+			<script type="text/javascript">
+					var feed = new Instafeed({
+							get: 'tagged',
+							limit: 9,
+							tagName: 'designofficepvd',
+							resolution: 'standard_resolution',
+							clientId: '9735e83dcb1948da9676847413f30e03',
+							template: '<img src="{{image}}">',
+							after: function() {
+								$('#instafeed').cycle();
+								$("#instafeed").click(function () {
+										$(this).cycle('next');
+									});
+
+								},
+					});
+					feed.run();
+			</script>
+			<script>
+				$(document).ready( function() {
+					$('.smooth').smoothScroll();
+					$(".cycle-slideshow img").click(function () {
+							$(this).closest(".cycle-slideshow").cycle('next');
+					});
+				 });
+			</script>
+			<?php wp_footer(); ?>
+			<script>
+			  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+			  ga('create', 'UA-4278398-20', 'auto');
+			  ga('send', 'pageview');
+
+			</script>
+    </body>
+</html>
