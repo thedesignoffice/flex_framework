@@ -9,59 +9,76 @@
 		<meta name="author" content="Developed by John Caserta">
 	  <meta name="Copyright" content="Copyright The Design Office 2015. All Rights Reserved.">
 
-		<link rel="stylesheet" href="http://thedesignoffice.org/wp-content/themes/dev/v3_style.css" type="text/css" />
+		<!-- <link rel="stylesheet" href="http://thedesignoffice.org/wp-content/themes/dev/v3_style.css" type="text/css" /> -->
     <style>
+		img { width: 100%; height: auto; }
+		.parent {
+			display: -webkit-flex; display: -webkit-box; display: -moz-box; display: -webkit-flex; display: -ms-flexbox; display: box;
+			display: flex;
+			-webkit-flex-direction: row; flex-direction: row;
+			-webkit-flex-wrap: wrap; flex-wrap: wrap;
+			padding: 0 22px 0 22px;
+		}
 
+			.child {
+				margin:22px;
+				min-height: 44px;
+				background: yellow;
+				-webkit-flex: 1 0 220px; flex: 1 0 220px;
+			}
+			.child.double {
+				-webkit-flex: 2 0 440px; flex: 2 0 440px;
+				}
+			.child.triple  {
+				-webkit-flex: 3 0 660px; flex: 3 0 660px;
+				}
 
     </style>
     </head>
     <body>
 
-        <header>
             <div class="parent">
+                <div class="child">
+                    New parent. Child
+                </div>
                 <div class="child">
                     Child
                 </div>
-                <div class="  child">
+            </div>
+
+						<div class="parent">
+                <div class="child">
+                    New parent. Child
+                </div>
+                <div class="child">
+                    Child
+                </div>
+								<div class="child">
                     Child
                 </div>
             </div>
-        </header>
 
-        <main>
 
           <div class="parent ">
-            	<div class="blank  child"></div>
+            		<div class="child">New parent. Child</div>
 
-
-
-
-
-								<div class="child blank ">   </div>
+								<div class="child blank "> </div>
 
 							  <div class="child setheight centerleft double ">
-									<div>
-							      <h4>ffabschrifting: Reading and exhibit about the design of language. Hosted by Lucinda Hitchcock</h4>
-							      <p class="red staysmall">Monday, May 11 at 7PM </p>
-
-							      <p class="staysmall"><a href="/events">More events</a></p>
-								</div>
+							      child setheight centerleft double
 							  </div>
 
 
 							  <div class="child excess setheight right">
-										hmmm
+										child excess setheight right
 							  </div>
 
 
 
-								<div class="child  ">   </div>
+								<div class="child blank"> </div>
 
-								<div class="child  multiply setheight centerleft staysmall">
-									<div>
-								      <p><a href="/members">Meet the members</a></p>
-										</div>
-							    </div>
+								<div class="child  setheight centerleft ">
+								    child  setheight centerleft
 							  </div>
 
 
@@ -71,43 +88,78 @@
 							  </div>
 
 								<div class="child shop grow  ">
-							    <div>
-							        <h3><a href="/shop" class="noarrow">Designs you can buy</a></h3>
-							    </div>
+										child shop grow
 							  </div>
 
 
 
-								<div class="child center setheight shrink doodad">
+								<div class="child center setheight  ">
+									<div>
+									child center setheight
 							    <a href="https://instagram.com/explore/tags/204westminster/" class="noarrow excess"><img src="http://thedesignoffice.org/wp-content/themes/dev/lib/img/we.svg" width="120"></a>
+									</div>
 							  </div>
 
 
-								<div class=" child setheight memberwork double centerleft">
-									double
+								<div class=" child setheight  double centerleft">
+									child setheight  double centerleft
 								</div>
 
 								<div class=" child setheight  centerleft">
-									setheight centerleft
+									child setheight centerleft
                 </div>
 
-								<div class="child setheight center  double ">
+								<div class="child  center  double ">
 							    <div>
-										child  double setheight center
-							   <a href="http://srainwater.com/category/blog/page/3/" class="noarrow"><img src="http://srainwater.com/wp-content/uploads/2014/04/sniffle.jpg"><p>Sarah Rainwater</p></a>
+										child  double  center
+							   <img src="http://srainwater.com/wp-content/uploads/2014/04/sniffle.jpg">
 							 		</div>
 							  </div>
+							</div><!-- parent -->
 
 
-								<div class=" child  title-face double grow">
-									<div>
-										<h2>h2</h2>
-											<p class="">child  title-face double grow <a href="/contact">Hi</a></p>
-									</div>
-								</div>
+							<div class="parent">
+	                <div class="child">
+	                    New parent. Child
+	                </div>
+	                <div class="child">
+	                    Child
+	                </div>
+									<div class="child">
+	                    Child
+	                </div>
+									<div class="child">
+	                    Child
+	                </div>
+									<div class="child">
+	                    Child
+	                </div>
+									<div class="child">
+	                    Child
+	                </div>
+									<div class="child">
+	                    Child
+	                </div>
+									<div class="child">
+	                    Child
+	                </div>
+									<div class="child">
+	                    Child
+	                </div>
+									<div class="child">
+	                    Child
+	                </div>
+									<div class="child">
+	                    Child
+	                </div>
+									<div class="child">
+	                    Child
+	                </div>
+									<div class="child">
+	                    Child
+	                </div>
 
             </div><!-- parent -->
-        </main>
 
 
     </body>
