@@ -34,38 +34,6 @@
             	<div class="blank  child"></div>
 
 
-							<div class="child flex tumblr bottom gallery setheight staysmall">
-									<div class="cycle-slideshow"
-											data-cycle-fx=fade
-											data-cycle-slides="> ol>li"
-											data-cycle-timeout=500
-											data-cycle-speed=500
-											data-cycle-manual-speed=100
-											data-cycle-pause-on-hover="true"
-											>
-
-									<script type="text/javascript" src="http://dobooks.tumblr.com/js?num=12"></script>
-									<p><a href="http://books.thedesignoffice.org">New on the shelves</a></p>
-									</div>
-							</div>
-
-							  <div class="child setheight instagallery double grow ">
-							    <span class="custom-caption"></span>
-							    <div id="instafeed" class=""
-							        data-cycle-fx=fade
-							        data-cycle-timeout=500
-							        data-cycle-delay=2000
-							        data-cycle-speed=2500
-							        data-cycle-manual-speed=100
-							        data-cycle-caption=".instagallery .custom-caption"
-							        data-cycle-caption-template="{{slideNum}}/{{slideCount}}"
-							        data-cycle-pause-on-hover="true"
-							        >
-							        <!-- <div class="cycle-pager"></div> -->
-							    </div>
-									<p class="staysmall"><a href="https://instagram.com/explore/tags/designofficepvd/">Peer into the Office</a></p>
-
-							  </div>
 
 
 
@@ -73,69 +41,10 @@
 
 							  <div class="child setheight centerleft double ">
 									<div>
-											<!-- Events queries -->
-												<?php
-
-												// Consider whether to get by category
-
-												$posttypename = get_field('nickname');
-												$the_query = new WP_Query( 'post_type=event&posts_per_page=1' );
-
-
-													// The Loop
-													while ( $the_query->have_posts() ) : $the_query->the_post();
-
-														$terms = strip_tags( get_the_term_list($post->ID, 'eventstatus', '', ' ', '') );
-														$termsstrip = strtolower($terms);
-														$urltest = 'redirect_url';
-														$fr = get_field('redirect_url');
-														$urlpass = get_post_meta($post->ID, $urltest, TRUE);
-
-														echo '<a href="';
-														if($urlpass != '') { echo $fr; } else { echo the_permalink(); };
-														echo '" class="black noarrow" title="More">';
-
-//														echo '<img src="', the_field('background_image'), '">';
-														echo '<h2>', the_field('event_type') ,'</h2>';
-														echo '<h4 class="title-face">', the_title(), ': ', the_field('event_subhead'), '</h4></a>';
-
-														echo '<p class=" staysmall para">';
-
-														$key = 'date_of_event';
-														$pr = get_field($key);
-														$themeta = get_post_meta($post->ID, $key, TRUE);
-														if($themeta != '') {
-															$date = date("D, M d, Y", strtotime(get_field('date_of_event')));
-															echo $date;
-															echo ' at ', the_field('event_time');
-														}  else { echo 'Coming soon'; }
-														echo '</p>';
-
-
-
-															if(has_term( 'members-only', 'eventstatus')) {
-																echo '<span class="purple"> (Members only)</span>';
-															}
-
-															echo '<p class="staysmall"><a href="/events">More events</a></p>';
-													endwhile;
-
-													// Reset Post Data
-													wp_reset_postdata();
-
-												?>
-
-
-
-											<!---
-							        <h3>Exhibit / Discussion / Reading</h3>
-							        <img src="http://thedesignoffice.org/wp-content/uploads/2015/05/Ming-3d-letters-hand.jpg" width="60%">
-
 							      <h4>ffabschrifting: Reading and exhibit about the design of language. Hosted by Lucinda Hitchcock</h4>
 							      <p class="red staysmall">Monday, May 11 at 7PM </p>
 
 							      <p class="staysmall"><a href="/events">More events</a></p>
-									-->
 								</div>
 							  </div>
 
